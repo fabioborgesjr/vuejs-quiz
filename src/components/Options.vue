@@ -6,12 +6,9 @@
     >
       <label
         class="element-animation1 btn btn-lg btn-light btn-block"
-        @click="alert"
+        @click="select(index)"
       ><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>{{option}}</label>
     </div>
-    <!-- <label class="element-animation2 btn btn-lg btn-light btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>2 Two</label>
-    <label class="element-animation3 btn btn-lg btn-light btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>3 Three</label>
-    <label class="element-animation4 btn btn-lg btn-light btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>4 Four</label> -->
   </div>
 </template>
 
@@ -21,8 +18,8 @@ export default {
     options: Array
   },
   methods: {
-    alert() {
-      alert("teste");
+    select(value) {
+      console.log(value)
     }
   }
 };
@@ -32,6 +29,7 @@ export default {
 label.btn {
   padding: 18px 60px;
   white-space: normal;
+  margin-bottom: 0px;
 }
 
 label.btn:hover {
@@ -47,7 +45,6 @@ label .btn-label {
   left: 0;
   top: 0;
   display: inline-block;
-  padding: 0 10px;
   background: rgba(0, 0, 0, 0.15);
   height: 100%;
 }
