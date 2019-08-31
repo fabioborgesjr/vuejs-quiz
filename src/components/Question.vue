@@ -9,8 +9,9 @@
       :alt="alt"
     >
     <div class="card-body">
-      <p class="card-text">{{question}}</p>
+      <p class="card-text lead">{{question}}</p>
     </div>
+    <slot></slot>
   </div>
 </template>
 

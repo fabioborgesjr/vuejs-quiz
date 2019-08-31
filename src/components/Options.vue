@@ -1,46 +1,62 @@
 <template>
-  <div>
+  <div
+    data-test="pergunta"
+    :data-resposta="answered ? result : ''"
+  >
     <div
       v-for="(option,index) in options"
       :key="index"
     >
-      <label
+      <button
         class="element-animation1 btn btn-lg btn-light btn-block"
         @click="select(index)"
-      ><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>{{option}}</label>
+        data-test="opcao"
+        :disabled="answered"
+      ><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>{{option}}</button>
     </div>
+  </div>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      answered: false,
+      result: ""
+    };
+  },
   props: {
-    options: Array
+    options: Array,
+    answer: Number
   },
   methods: {
     select(value) {
-      console.log(value)
+      this.answered = true;
+      this.result = value === this.answer ? "correta" : "errada";
+
+      if (this.result === "correta") this.$emit("correct");
     }
   }
 };
 </script>
 
 <style>
-label.btn {
+button.btn {
   padding: 18px 60px;
   white-space: normal;
   margin-bottom: 0px;
 }
 
-label.btn:hover {
+button.btn:hover {
   text-shadow: 0 3px 2px rgba(0, 0, 0, 0.4);
 }
-label.btn-block {
+button.btn-block {
   text-align: left;
   position: relative;
 }
 
-label .btn-label {
+button .btn-label {
   position: absolute;
   left: 0;
   top: 0;
@@ -48,7 +64,7 @@ label .btn-label {
   background: rgba(0, 0, 0, 0.15);
   height: 100%;
 }
-label .glyphicon {
+button .glyphicon {
   top: 34%;
 }
 .element-animation1 {
