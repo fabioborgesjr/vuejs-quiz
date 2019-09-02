@@ -3,10 +3,18 @@
     <Navbar :text="message"></Navbar>
     <div v-for="(question, iQuestion) in questions" :key="iQuestion">
       <Question :question="question">
-        <Options v-for="(option, iOption) in options[iQuestion]" :key="iOption" :options="option" :answer="answers.q1" @correct="right++"></Options>
+        <Options :started="started" v-for="(option, iOption) in options[iQuestion]" :key="iOption" :options="option" :answer="answers[iQuestion]" @start="start" @correct="changeScore"></Options>
       </Question>
     </div>
-    <Result :right="right"></Result>
+    <Result :started="started" :right="right">
+      <button
+        class="element-animation1 btn btn-lg btn-dark btn-block"
+        @click="reset"
+        data-test="refazer"
+      >
+        Refazer
+      </button>
+    </Result>
   </div>
 </template>
 
@@ -51,13 +59,22 @@ export default {
         ]
       }
     ],
-    answers: {
-      q1: 3,
-      q2: 0,
-      q3: 2
-    },
-    right: 0
+    answers: [3, 0, 2],
+    right: 0,
+    started: false
   }),
+  methods: {
+    changeScore() {
+      this.right++
+    },
+    reset() {
+      this.started = false;
+      this.right = 0;
+    },
+    start() {
+      this.started = true;
+    }
+  },
   components: {
     Navbar,
     Question,

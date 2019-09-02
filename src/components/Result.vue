@@ -1,18 +1,21 @@
 <template>
-  <div
-    class="alert alert-primary"
-    role="alert"
-    v-show="right"
-    :data-resultado="right"
-  >
-    Você acertou {{right}} questões
+  <div v-show="started">
+    <div
+      class="alert alert-primary"
+      role="alert"
+      :data-resultado="right"
+    >
+      Você acertou {{right}} questões
+    </div>
+    <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    right: Number
+    right: Number,
+    started: Boolean
   }
 };
 </script>

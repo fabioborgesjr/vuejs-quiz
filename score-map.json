@@ -1,0 +1,13 @@
+{
+    "tests": [
+        {
+            "totalScore": 100,
+            "path": "__tests__/validation.test.js",
+            "scores": [
+                20,
+                40,
+                40
+            ]
+        }
+    ]
+}
