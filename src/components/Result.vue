@@ -5,7 +5,7 @@
       role="alert"
       :data-resultado="right"
     >
-      Você acertou {{right}} questões
+      Você acertou <b>{{right}}</b> questões
     </div>
     <slot></slot>
   </div>
