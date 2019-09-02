@@ -1,9 +1,8 @@
 <template>
-  <div data-test="pergunta">
+  <div data-test="pergunta" :data-resposta="answered ? result : ''">
     <div
       v-for="(option,iOption) in options"
       :key="iOption"
-      :data-resposta="answered ? result : ''"
     >
       <button
         class="element-animation1 btn btn-lg btn-light btn-block"
