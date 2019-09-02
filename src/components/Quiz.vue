@@ -1,39 +1,11 @@
 <template>
   <div class="container quiz">
     <Navbar :text="message"></Navbar>
-    <Question
-      question="Qual personagem é esse?"
-      src="https://abrilsuperinteressante.files.wordpress.com/2016/10/super_imgirmao_jorel.png"
-      alt="https://abrilsuperinteressante.files.wordpress.com/2016/10/super_imgirmao_jorel.png"
-    >
-      <Options
-        :options="options1"
-        :answer="answers.q1"
-        @correct="right++"
-      ></Options>
-    </Question>
-    <Question
-      question="Qual personagem é esse?"
-      src="https://i.ytimg.com/vi/QXWINUsBUjk/maxresdefault.jpg"
-      alt="https://i.ytimg.com/vi/QXWINUsBUjk/maxresdefault.jpg"
-    >
-      <Options
-        :options="options2"
-        :answer="answers.q2"
-        @correct="right++"
-      ></Options>
-    </Question>
-    <Question
-      question="Qual personagem é esse?"
-      src="https://i.ytimg.com/vi/_0_Wifw9q1A/maxresdefault.jpg"
-      alt="https://i.ytimg.com/vi/_0_Wifw9q1A/maxresdefault.jpg"
-    >
-      <Options
-        :options="options3"
-        :answer="answers.q3"
-        @correct="right++"
-      ></Options>
-    </Question>
+    <div v-for="(question, iQuestion) in questions" :key="iQuestion">
+      <Question :question="question">
+        <Options v-for="(option, iOption) in options[iQuestion]" :key="iOption" :options="option" :answer="answers.q1" @correct="right++"></Options>
+      </Question>
+    </div>
     <Result :right="right"></Result>
   </div>
 </template>
@@ -48,13 +20,36 @@ export default {
   data: () => ({
     message:
       "Adivinhe os personagens do desenho Irmão do Jorel e concorra a prêmios!",
-    options1: ["Joel", "Joesley", "Jorel ", "Irmão do Jorel"],
-    options2: ["Vovó Juju", "Vovó Joana", "Vovó July ", "Vovó Jane"],
-    options3: [
-      "Caro Felino",
-      "Carlito Felino",
-      "Carlos Felino",
-      "Charles Felino"
+    questions: [
+      {
+        src:
+          "https://abrilsuperinteressante.files.wordpress.com/2016/10/super_imgirmao_jorel.png",
+        alt: "Personagem questao 1"
+      },
+      {
+        src: "https://i.ytimg.com/vi/QXWINUsBUjk/maxresdefault.jpg",
+        alt: "Personagem questao 2"
+      },
+      {
+        src: "https://i.ytimg.com/vi/_0_Wifw9q1A/maxresdefault.jpg",
+        alt: "Personagem questao 3"
+      }
+    ],
+    options: [
+      {
+        option: ["Joel", "Joesley", "Jorel ", "Irmão do Jorel"]
+      },
+      {
+        option: ["Vovó Juju", "Vovó Joana", "Vovó July ", "Vovó Jane"]
+      },
+      {
+        option: [
+          "Caro Felino",
+          "Carlito Felino",
+          "Carlos Felino",
+          "Charles Felino"
+        ]
+      }
     ],
     answers: {
       q1: 3,

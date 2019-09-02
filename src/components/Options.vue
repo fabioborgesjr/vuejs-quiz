@@ -1,20 +1,22 @@
 <template>
-  <div
-    data-test="pergunta"
-    :data-resposta="answered ? result : ''"
-  >
+  <div data-test="pergunta">
     <div
-      v-for="(option,index) in options"
-      :key="index"
+      v-for="(option,iOption) in options"
+      :key="iOption"
+      :data-resposta="answered ? result : ''"
     >
       <button
         class="element-animation1 btn btn-lg btn-light btn-block"
-        @click="select(index)"
+        @click="select(iOption)"
         data-test="opcao"
         :disabled="answered"
-      ><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>{{option}}</button>
+      >
+        <span class="btn-label">
+          <i class="glyphicon glyphicon-chevron-right"></i>
+        </span>
+        {{option}}
+      </button>
     </div>
-  </div>
   </div>
 </template>
 
