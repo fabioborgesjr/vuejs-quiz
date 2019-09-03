@@ -9,10 +9,10 @@
     <Result :started="started" :right="right">
       <button
         class="element-animation1 btn btn-lg btn-dark btn-block"
-        @click="reset"
+        v-on:click="reset"
         data-test="refazer"
       >
-        Refazer
+        Refazer o Quiz
       </button>
     </Result>
   </div>

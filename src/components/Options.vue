@@ -1,18 +1,18 @@
 <template>
-  <div data-test="pergunta" :data-resposta="answered ? result : ''">
-    <div
+  <div
+    data-test="pergunta"
+    :data-resposta="answered ? result : ''"
+  >
+    <button
       v-for="(option,iOption) in options"
       :key="iOption"
+      class="element-animation1 btn btn-lg btn-light btn-block"
+      @click="select(iOption)"
+      data-test="opcao"
+      :disabled="answered && started"
     >
-      <button
-        class="element-animation1 btn btn-lg btn-light btn-block"
-        @click="select(iOption)"
-        data-test="opcao"
-        :disabled="answered && started"
-      >
-        {{option}}
-      </button>
-    </div>
+      {{option}}
+    </button>
   </div>
 </template>
 
@@ -33,16 +33,19 @@ export default {
     select(value) {
       if (!this.started) {
         this.$emit("start");
-      } 
-      
+      }
+
       this.answered = true;
       this.result = value === this.answer ? "correta" : "errada";
 
       if (this.result === "correta") this.$emit("correct");
     }
   },
-  created() {
-    this.answered = this.started;
+  updated() {
+    if (!this.started) {
+      this.answered = false;
+      this.result = "";
+    }
   }
 };
 </script>

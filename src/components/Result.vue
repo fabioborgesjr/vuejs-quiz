@@ -3,7 +3,7 @@
     <div
       class="alert alert-primary"
       role="alert"
-      :data-resultado="right"
+      :data-resultado="started ? right : ''"
     >
       Você acertou <b>{{right}}</b> questões
     </div>
